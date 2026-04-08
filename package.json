@@ -1,0 +1,19 @@
+{
+  "name": "forvalentdhia",
+  "version": "1.0.0",
+  "description": "A romantic personal website for Valentdhia",
+  "scripts": {
+    "dev": "npx serve .",
+    "build": "echo 'Static HTML - no build needed'",
+    "lint": "echo 'No linter configured for static HTML'"
+  },
+  "dependencies": {
+    "@vercel/analytics": "^1.4.1"
+  },
+  "keywords": [
+    "romantic",
+    "personal-website"
+  ],
+  "author": "LautaroMartini",
+  "license": "ISC"
+}
