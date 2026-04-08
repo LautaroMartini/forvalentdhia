@@ -1,0 +1,1162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>For Valentdhia - A Romantic Personal Website</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Source+Serif+Pro:wght@400;600;700&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Source Serif Pro', serif;
+            background: linear-gradient(135deg, #FFE5E5 0%, #E8D5F2 50%, #E0E8F5 100%);
+            min-height: 100vh;
+            color: #5C4033;
+            line-height: 1.6;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Cormorant Garamond', serif;
+            font-weight: 600;
+            letter-spacing: -0.02em;
+        }
+
+        button {
+            cursor: pointer;
+            font-family: 'Poppins', sans-serif;
+            border: none;
+            outline: none;
+        }
+
+        button:focus-visible {
+            outline: 2px solid #D97760;
+            outline-offset: 2px;
+        }
+
+        a:focus-visible {
+            outline: 2px solid #D97760;
+            outline-offset: 2px;
+        }
+
+        ::selection {
+            background-color: #D97760;
+            color: #FFF8F0;
+        }
+
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: linear-gradient(to bottom, #D97760, #B76E79);
+            border-radius: 5px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: linear-gradient(to bottom, #B76E79, #9B5A68);
+        }
+
+        /* ANIMATIONS */
+        @keyframes float {
+            0% { transform: translateY(0px) rotate(0deg); opacity: 0.3; }
+            25% { transform: translateY(-30px) rotate(90deg); opacity: 0.5; }
+            50% { transform: translateY(-60px) rotate(180deg); opacity: 0.7; }
+            75% { transform: translateY(-30px) rotate(270deg); opacity: 0.5; }
+            100% { transform: translateY(0px) rotate(360deg); opacity: 0.3; }
+        }
+
+        @keyframes slideDown {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes slideUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0) translateX(-50%); }
+            50% { transform: translateY(-15px) translateX(-50%); }
+        }
+
+        @keyframes pulse-glow {
+            0%, 100% { box-shadow: 0 0 20px rgba(217, 119, 96, 0.3), inset 0 0 20px rgba(217, 119, 96, 0.1); }
+            50% { box-shadow: 0 0 40px rgba(217, 119, 96, 0.6), inset 0 0 30px rgba(217, 119, 96, 0.2); }
+        }
+
+        @keyframes glow-text {
+            0%, 100% { text-shadow: 0 0 10px rgba(217, 119, 96, 0.3); }
+            50% { text-shadow: 0 0 20px rgba(217, 119, 96, 0.6), 0 0 30px rgba(231, 84, 128, 0.4); }
+        }
+
+        @keyframes scale-in {
+            from { opacity: 0; transform: scale(0.95); }
+            to { opacity: 1; transform: scale(1); }
+        }
+
+        @keyframes rotate-in {
+            from { opacity: 0; transform: rotate(-5deg) scale(0.95); }
+            to { opacity: 1; transform: rotate(0deg) scale(1); }
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 0.6; }
+            50% { opacity: 1; }
+        }
+
+        /* HEADER */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 40;
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            background: rgba(255, 255, 255, 0.3);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+            animation: slideDown 0.6s ease-out;
+        }
+
+        nav {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 1rem 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 1.125rem;
+            font-weight: bold;
+            font-family: 'Cormorant Garamond', serif;
+            background: linear-gradient(to right, #D97760, #E75480);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+
+        .logo:hover {
+            transform: scale(1.05);
+        }
+
+        .logo-icon {
+            color: #E75480;
+            -webkit-text-fill-color: #E75480;
+            display: flex;
+            align-items: center;
+        }
+
+        .logo-icon svg {
+            width: 20px;
+            height: 20px;
+            stroke: #E75480;
+            fill: #E75480;
+        }
+
+        .nav-links {
+            display: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: #5C4033;
+            text-decoration: none;
+            font-size: 0.875rem;
+            font-weight: 500;
+            font-family: 'Poppins', sans-serif;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: #D97760;
+        }
+
+        @media (min-width: 768px) {
+            .nav-links {
+                display: flex;
+            }
+        }
+
+        /* PARTICLES */
+        .particles {
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            overflow: hidden;
+            z-index: 1;
+        }
+
+        .particle {
+            position: absolute;
+            animation: float 8s ease-in-out infinite;
+            font-size: 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .particle.heart { color: rgba(244, 169, 168, 0.4); }
+        .particle.star { color: rgba(200, 184, 216, 0.4); }
+
+        /* HERO SECTION */
+        .hero {
+            position: relative;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 4rem 1rem;
+            overflow: hidden;
+            margin-top: 60px;
+            animation: fadeInUp 0.8s ease-out;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(circle at 20% 50%, rgba(255, 229, 229, 0.2), transparent 50%),
+                        radial-gradient(circle at 80% 80%, rgba(232, 213, 242, 0.2), transparent 50%);
+            pointer-events: none;
+            z-index: 2;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 10;
+            text-align: center;
+            max-width: 42rem;
+        }
+
+        .hero h1 {
+            font-size: clamp(2.5rem, 8vw, 4.5rem);
+            background: linear-gradient(to right, #D97760, #E75480, #D97760);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 1.5rem;
+            animation: glow-text 3s ease-in-out infinite;
+        }
+
+        .hero p {
+            font-size: 1.125rem;
+            color: #666;
+            margin-bottom: 2rem;
+            animation: slideUp 0.8s ease-out 0.4s both;
+        }
+
+        .divider {
+            width: 6rem;
+            height: 4px;
+            background: linear-gradient(to right, #F4A9A8, #E75480, #F4A9A8);
+            margin: 2rem auto;
+            border-radius: 2px;
+            animation: slideUp 0.8s ease-out 0.6s both;
+        }
+
+        .btn-explore {
+            padding: 0.75rem 2rem;
+            font-size: 1.125rem;
+            background: linear-gradient(135deg, #D97760, #B76E79);
+            color: #FFF8F0;
+            border-radius: 9999px;
+            font-weight: 600;
+            box-shadow: 0 4px 15px rgba(217, 119, 96, 0.3);
+            animation: slideUp 0.8s ease-out 0.8s both;
+            transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+
+        .btn-explore:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 30px rgba(217, 119, 96, 0.5);
+        }
+
+        .btn-explore:active {
+            transform: translateY(-1px);
+        }
+
+        .scroll-indicator {
+            position: absolute;
+            bottom: 2rem;
+            left: 50%;
+            transform: translateX(-50%);
+            animation: bounce 2s infinite;
+            font-size: 1.5rem;
+            color: #D97760;
+        }
+
+        /* MAIN BUTTONS */
+        .main-buttons {
+            padding: 3rem 1rem;
+            max-width: 1024px;
+            margin: 0 auto;
+            animation: fadeInUp 0.8s ease-out;
+        }
+
+        .main-buttons h2 {
+            font-size: clamp(1.875rem, 5vw, 3.125rem);
+            text-align: center;
+            background: linear-gradient(to right, #D97760, #E75480);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 4rem;
+        }
+
+        .buttons-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            max-width: 32rem;
+            margin: 0 auto;
+        }
+
+        /* GLASS CARD */
+        .glass-card {
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            background: rgba(255, 255, 255, 0.7);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            border-radius: 1.5rem;
+            padding: 2rem;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+            animation: fadeInUp 0.8s ease-out;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .glass-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+            transition: left 0.5s;
+        }
+
+        .glass-card:hover::before {
+            left: 100%;
+        }
+
+        .glass-card:hover {
+            background: rgba(255, 255, 255, 0.8);
+            box-shadow: 0 8px 32px rgba(217, 119, 96, 0.15), 0 0 20px rgba(217, 119, 96, 0.1);
+            transform: translateY(-5px);
+        }
+
+        .glass-card.active {
+            box-shadow: 0 0 0 2px #F4A9A8, 0 8px 32px rgba(217, 119, 96, 0.2);
+        }
+
+        .card-icon-bg {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 4.5rem;
+            height: 4.5rem;
+            background: linear-gradient(to bottom right, #F4A9A8, #E75480);
+            border-radius: 9999px;
+            margin-bottom: 1.5rem;
+            animation: rotate-in 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+
+        .card-icon-bg svg {
+            width: 2rem;
+            height: 2rem;
+            stroke: #fff;
+            stroke-width: 2;
+        }
+
+        .glass-card h3 {
+            font-size: 1.5rem;
+            color: #D97760;
+            margin-bottom: 0.75rem;
+        }
+
+        .glass-card p {
+            color: #666;
+            font-size: 0.875rem;
+        }
+
+        /* SECTIONS */
+        section {
+            padding: 3rem 1rem;
+            max-width: 1024px;
+            margin: 0 auto;
+            animation: fadeInUp 0.8s ease-out;
+        }
+
+        section h2 {
+            font-size: clamp(1.875rem, 5vw, 3.125rem);
+            text-align: center;
+            background: linear-gradient(to right, #D97760, #E75480);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 1rem;
+        }
+
+        section > p {
+            text-align: center;
+            color: #666;
+            margin-bottom: 4rem;
+            font-size: 0.875rem;
+        }
+
+        /* ACCORDION */
+        .accordion {
+            margin-top: 1rem;
+        }
+
+        .accordion-item {
+            margin-bottom: 1rem;
+            animation: slideUp 0.6s ease-out;
+        }
+
+        .accordion-item:nth-child(2) { animation-delay: 50ms; }
+        .accordion-item:nth-child(3) { animation-delay: 100ms; }
+        .accordion-item:nth-child(4) { animation-delay: 150ms; }
+        .accordion-item:nth-child(5) { animation-delay: 200ms; }
+        .accordion-item:nth-child(6) { animation-delay: 250ms; }
+        .accordion-item:nth-child(7) { animation-delay: 300ms; }
+        .accordion-item:nth-child(8) { animation-delay: 350ms; }
+
+        .accordion-button {
+            width: 100%;
+            padding: 1.5rem;
+            background: rgba(255, 255, 255, 0.7);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            border-radius: 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            cursor: pointer;
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.25rem;
+            font-weight: bold;
+            color: #D97760;
+            transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+        }
+
+        .accordion-button:hover {
+            background: rgba(255, 255, 255, 0.8);
+            box-shadow: 0 4px 15px rgba(217, 119, 96, 0.1);
+            transform: translateX(5px);
+        }
+
+        .accordion-button.active {
+            background: rgba(255, 255, 255, 0.85);
+            box-shadow: 0 4px 15px rgba(217, 119, 96, 0.15);
+        }
+
+        .accordion-icon {
+            transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+            display: flex;
+            align-items: center;
+        }
+
+        .accordion-icon svg {
+            width: 1rem;
+            height: 1rem;
+            stroke: #D97760;
+            stroke-width: 2.5;
+        }
+
+        .accordion-button.active .accordion-icon {
+            transform: rotate(180deg);
+        }
+
+        .accordion-content {
+            display: none;
+            padding: 1.5rem;
+            background: rgba(255, 255, 255, 0.3);
+            border-top: 1px solid rgba(255, 255, 255, 0.3);
+            border-radius: 0 0 1.5rem 1.5rem;
+            color: #5C4033;
+            animation: slideUp 0.3s ease-out;
+            backdrop-filter: blur(5px);
+            -webkit-backdrop-filter: blur(5px);
+        }
+
+        .accordion-content.active {
+            display: block;
+        }
+
+        .accordion-content ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .accordion-content li {
+            display: flex;
+            align-items: flex-start;
+            gap: 0.75rem;
+            margin-bottom: 0.75rem;
+            animation: slideUp 0.3s ease-out;
+        }
+
+        .accordion-content li:nth-child(2) { animation-delay: 50ms; }
+        .accordion-content li:nth-child(3) { animation-delay: 100ms; }
+        .accordion-content li:nth-child(4) { animation-delay: 150ms; }
+        .accordion-content li:nth-child(5) { animation-delay: 200ms; }
+        .accordion-content li:nth-child(6) { animation-delay: 250ms; }
+
+        .li-icon {
+            flex-shrink: 0;
+            margin-top: 3px;
+            display: flex;
+            align-items: center;
+        }
+
+        .li-icon svg {
+            width: 14px;
+            height: 14px;
+            stroke: #F4A9A8;
+            fill: #F4A9A8;
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        .accordion-content p {
+            line-height: 1.8;
+        }
+
+        .accordion-content textarea {
+            width: 100%;
+            padding: 0.75rem;
+            border: 1px solid rgba(217, 119, 96, 0.2);
+            border-radius: 0.5rem;
+            font-family: 'Source Serif Pro', serif;
+            background: rgba(255, 255, 255, 0.5);
+            color: #5C4033;
+            resize: vertical;
+            transition: all 0.3s;
+        }
+
+        .accordion-content textarea:focus {
+            outline: none;
+            background: rgba(255, 255, 255, 0.8);
+            box-shadow: 0 0 10px rgba(217, 119, 96, 0.2);
+        }
+
+        /* FOOTER */
+        footer {
+            background: linear-gradient(to bottom, transparent, rgba(255, 255, 255, 0.2));
+            border-top: 1px solid rgba(255, 255, 255, 0.2);
+            padding: 3rem 1rem;
+            text-align: center;
+            backdrop-filter: blur(5px);
+            -webkit-backdrop-filter: blur(5px);
+        }
+
+        .footer-content {
+            max-width: 1024px;
+            margin: 0 auto;
+        }
+
+        .footer-brand {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .footer-brand .footer-heart {
+            display: flex;
+            align-items: center;
+        }
+
+        .footer-brand .footer-heart svg {
+            width: 20px;
+            height: 20px;
+            stroke: #E75480;
+            fill: #E75480;
+            animation: float 4s ease-in-out infinite;
+        }
+
+        .footer-brand .footer-heart:nth-child(1) svg { animation-delay: -1s; }
+        .footer-brand .footer-heart:nth-child(3) svg { animation-delay: -2s; }
+
+        .footer-brand .footer-name {
+            font-family: 'Cormorant Garamond', serif;
+            font-weight: 600;
+            color: #5C4033;
+        }
+
+        .footer-text {
+            color: #666;
+            font-size: 0.875rem;
+            margin-bottom: 1rem;
+        }
+
+        .footer-divider {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1rem;
+            margin: 1.5rem 0;
+        }
+
+        .footer-divider::before,
+        .footer-divider::after {
+            content: '';
+            width: 3rem;
+            height: 1px;
+            background: linear-gradient(to right, transparent, #F4A9A8, transparent);
+        }
+
+        .footer-divider span {
+            color: #F4A9A8;
+            font-size: 1.125rem;
+            animation: float 3s ease-in-out infinite;
+            display: flex;
+            align-items: center;
+        }
+
+        .footer-divider span svg {
+            width: 18px;
+            height: 18px;
+            stroke: #F4A9A8;
+            fill: #F4A9A8;
+        }
+
+        .footer-copyright {
+            color: #999;
+            font-size: 0.75rem;
+        }
+
+        /* MUSIC TOGGLE */
+        .music-toggle {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            z-index: 50;
+            width: 3rem;
+            height: 3rem;
+            border-radius: 9999px;
+            background: rgba(255, 255, 255, 0.85);
+            border: 1px solid rgba(255, 255, 255, 0.4);
+            color: #D97760;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+            box-shadow: 0 4px 15px rgba(217, 119, 96, 0.15);
+        }
+
+        .music-toggle svg {
+            width: 1.25rem;
+            height: 1.25rem;
+            stroke: #D97760;
+            stroke-width: 2;
+            transition: stroke 0.3s;
+        }
+
+        .music-toggle:hover {
+            box-shadow: 0 4px 20px rgba(217, 119, 96, 0.3);
+            transform: scale(1.1);
+        }
+
+        .music-toggle.playing {
+            background: linear-gradient(135deg, #D97760, #B76E79);
+            animation: pulse-glow 2s ease-in-out infinite;
+        }
+
+        .music-toggle.playing svg {
+            stroke: #FFF8F0;
+        }
+
+        /* SCROLL TO TOP */
+        .scroll-to-top {
+            position: fixed;
+            bottom: 6rem;
+            right: 2rem;
+            z-index: 40;
+            width: 3rem;
+            height: 3rem;
+            border-radius: 9999px;
+            background: rgba(255, 255, 255, 0.85);
+            border: 1px solid rgba(255, 255, 255, 0.4);
+            color: #D97760;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+            box-shadow: 0 4px 15px rgba(217, 119, 96, 0.15);
+        }
+
+        .scroll-to-top svg {
+            width: 1.25rem;
+            height: 1.25rem;
+            stroke: #D97760;
+            stroke-width: 2.5;
+        }
+
+        .scroll-to-top.show {
+            display: flex;
+        }
+
+        .scroll-to-top:hover {
+            transform: scale(1.1);
+            box-shadow: 0 4px 20px rgba(217, 119, 96, 0.3);
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 640px) {
+            nav { padding: 1rem; }
+            .hero { margin-top: 60px; padding: 2rem 1rem; }
+            .buttons-grid { grid-template-columns: 1fr; }
+            .music-toggle { width: 2.5rem; height: 2.5rem; bottom: 1.5rem; right: 1.5rem; }
+            .scroll-to-top { width: 2.5rem; height: 2.5rem; bottom: 5.5rem; right: 1.5rem; }
+        }
+    </style>
+</head>
+<body>
+    <!-- Particles -->
+    <div class="particles" id="particles"></div>
+
+    <!-- Header -->
+    <header>
+        <nav>
+            <button class="logo" onclick="scrollToSection('hero')">
+                <span class="logo-icon">
+                    <svg viewBox="0 0 24 24" fill="currentColor" stroke="none"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+                </span>
+                Valentdhia
+            </button>
+            <div class="nav-links">
+                <a href="#" onclick="scrollToSection('main-buttons'); return false;">Explore</a>
+                <a href="#" onclick="scrollToSection('questions'); return false;">Questions</a>
+                <a href="#" onclick="scrollToSection('letter'); return false;">Letter</a>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="hero">
+        <div class="hero-content">
+            <h1>For Valentdhia</h1>
+            <p>im sorry, i was just feeling creative</p>
+            <div class="divider"></div>
+            <button class="btn-explore" onclick="scrollToSection('main-buttons')">Come see this</button>
+        </div>
+        <div class="scroll-indicator">
+            <svg viewBox="0 0 24 24" fill="none" style="width:1.5rem;height:1.5rem;stroke:#D97760;stroke-width:2.5"><polyline points="6 9 12 15 18 9"/></svg>
+        </div>
+    </section>
+
+    <!-- Main Buttons -->
+    <section class="main-buttons" id="main-buttons">
+        <h2>Let's Begin</h2>
+        <div class="buttons-grid">
+            <button class="glass-card" onclick="toggleSection('about-you', this)">
+                <div class="card-icon-bg">
+                    <svg viewBox="0 0 24 24" fill="none"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" stroke="#fff" stroke-width="2" fill="rgba(255,255,255,0.3)"/></svg>
+                </div>
+                <h3>About You</h3>
+                <p>Things I admire about you</p>
+            </button>
+            <button class="glass-card" onclick="toggleSection('about-me', this)">
+                <div class="card-icon-bg">
+                    <svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="8" r="4" stroke="#fff" stroke-width="2"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7" stroke="#fff" stroke-width="2" stroke-linecap="round"/></svg>
+                </div>
+                <h3>About Me</h3>
+                <p>Why I like you</p>
+            </button>
+        </div>
+    </section>
+
+    <!-- About You -->
+    <section id="about-you" style="display: none;">
+        <h2>About You</h2>
+        <p></p>
+        <div class="accordion">
+            <div class="accordion-item">
+                <button class="accordion-button" onclick="toggleAccordion(this)">
+                    Why you interest me?
+                    <span class="accordion-icon">
+                        <svg viewBox="0 0 24 24" fill="none"><polyline points="6 9 12 15 18 9"/></svg>
+                    </span>
+                </button>
+                <div class="accordion-content">
+                    <ul>
+                        <li>
+                            <span class="li-icon"><svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></span>
+                            Because you are pretty and i'm pretty stupid.
+                        </li>
+                        <li>
+                            <span class="li-icon"><svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></span>
+                            Because even in just a few weeks, you've felt different from most people I talk to.
+                        </li>
+                        <li>
+                            <span class="li-icon"><svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></span>
+                            You seem beautiful, funny, and really easy to talk to, and that combination is rare.
+                        </li>
+                        <li>
+                            <span class="li-icon"><svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></span>
+                            I'd genuinely love to know more about how you think, what you value, and what makes you you.
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="accordion-item">
+                <button class="accordion-button" onclick="toggleAccordion(this)">
+                    Questions I Truly Want to Ask You
+                    <span class="accordion-icon">
+                        <svg viewBox="0 0 24 24" fill="none"><polyline points="6 9 12 15 18 9"/></svg>
+                    </span>
+                </button>
+                <div class="accordion-content">
+                    <ul>
+                        <li>
+                            <span class="li-icon"><svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></span>
+                            What does love mean to you?
+                        </li>
+                        <li>
+                            <span class="li-icon"><svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></span>
+                            How do you want to be loved?
+                        </li>
+                        <li>
+                            <span class="li-icon"><svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></span>
+                            How do you like people to show interest in you?
+                        </li>
+                        <li>
+                            <span class="li-icon"><svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></span>
+                            How do you feel about people who are emotionally direct from the start?
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Me -->
+    <section id="about-me" style="display: none;">
+        <h2>About Me</h2>
+        <p></p>
+        <div class="accordion">
+            <div class="accordion-item">
+                <button class="accordion-button" onclick="toggleAccordion(this)">
+                    Why I Like You
+                    <span class="accordion-icon">
+                        <svg viewBox="0 0 24 24" fill="none"><polyline points="6 9 12 15 18 9"/></svg>
+                    </span>
+                </button>
+                <div class="accordion-content">
+                    <p>I like you not because I know everything about you yet, but because of the way you naturally caught my attention.
+Even in a short time, you've come across as funny, sweet, and genuinely easy to talk to.
+There's something about your energy that feels different, and that alone made me want to know more.
+You seem like the kind of person who might truly be worth discovering little by little.</p>
+                </div>
+            </div>
+
+            <div class="accordion-item">
+                <button class="accordion-button" onclick="toggleAccordion(this)">
+                    Why I'm Willing to Truly Try Something With You
+                    <span class="accordion-icon">
+                        <svg viewBox="0 0 24 24" fill="none"><polyline points="6 9 12 15 18 9"/></svg>
+                    </span>
+                </button>
+                <div class="accordion-content">
+                    <p>I'd be willing to try something real with you because, even in the short time we've talked, you already feel like someone worth taking seriously.
+What makes me want to try is not just that I like your vibe, but that I feel genuine curiosity about who you are beyond the surface.
+I'd want to be there for you in the ways I can, to understand you little by little, and to support you even while we're still getting to know each other.</p>
+                </div>
+            </div>
+
+            <div class="accordion-item">
+                <button class="accordion-button" onclick="toggleAccordion(this)">
+                    My Intentions With You
+                    <span class="accordion-icon">
+                        <svg viewBox="0 0 24 24" fill="none"><polyline points="6 9 12 15 18 9"/></svg>
+                    </span>
+                </button>
+                <div class="accordion-content">
+                    <p>Like you probably already know by now, I'm someone who prefers being honest about my intentions from the beginning.
+I don't really like confusion, mixed signals, or pretending I'm looking for less than what I truly feel.
+If I'm giving my time and energy to getting to know you, it's because I genuinely see something in you that feels worth exploring.
+My intention isn't to rush anything, but to build something real step by step.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Questions Section -->
+    <section id="questions">
+        <h2>Questions for You</h2>
+        <p>These are the things I'd like to understand about you</p>
+        <div class="accordion">
+            <div class="accordion-item">
+                <button class="accordion-button" onclick="toggleAccordion(this)">
+                    Do I interest you?
+                    <span class="accordion-icon">
+                        <svg viewBox="0 0 24 24" fill="none"><polyline points="6 9 12 15 18 9"/></svg>
+                    </span>
+                </button>
+                <div class="accordion-content">
+                    <textarea placeholder="Your thoughts..."></textarea>
+                </div>
+            </div>
+
+            <div class="accordion-item">
+                <button class="accordion-button" onclick="toggleAccordion(this)">
+                    Does it bother you when someone shows feelings quickly?
+                    <span class="accordion-icon">
+                        <svg viewBox="0 0 24 24" fill="none"><polyline points="6 9 12 15 18 9"/></svg>
+                    </span>
+                </button>
+                <div class="accordion-content">
+                    <textarea placeholder="Your thoughts..."></textarea>
+                </div>
+            </div>
+
+            <div class="accordion-item">
+                <button class="accordion-button" onclick="toggleAccordion(this)">
+                    Would you are really open to try something real?
+                    <span class="accordion-icon">
+                        <svg viewBox="0 0 24 24" fill="none"><polyline points="6 9 12 15 18 9"/></svg>
+                    </span>
+                </button>
+                <div class="accordion-content">
+                    <textarea placeholder="Your thoughts..."></textarea>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Final CTA -->
+    <section style="text-align: center;">
+        <div class="glass-card" style="max-width: 32rem; margin: 0 auto;">
+            <h2 style="background: linear-gradient(to right, #D97760, #E75480); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; margin-bottom: 1.5rem;">I'll be waiting to hear what you think</h2>
+            <p style="margin-bottom: 2rem;">when you're done, let me know what you think, whether you liked it or not, i'd really like to hear your thoughts</p>
+            <a href="https://wa.me/+5491127711627" target="_blank" rel="noopener noreferrer" class="btn-explore" style="text-decoration: none; display: inline-block; animation: pulse-glow 2s ease-in-out infinite;">let's talk</a>
+            <p style="font-size: 0.75rem; color: #999; margin-top: 2rem;"></p>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-brand">
+                <span class="footer-heart">
+                    <svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+                </span>
+                <span class="footer-name">For Valentdhia</span>
+                <span class="footer-heart">
+                    <svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+                </span>
+            </div>
+            <p class="footer-text">im so dumbbb</p>
+            <div class="footer-divider">
+                <span>
+                    <svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+                </span>
+            </div>
+            <p class="footer-copyright">© 2026 Lautaro Martini</p>
+        </div>
+    </footer>
+
+    <!-- Music Toggle — always visible, starts muted -->
+    <button class="music-toggle" id="musicToggle" onclick="toggleMusic()" title="Toggle music">
+        <svg id="musicIcon" viewBox="0 0 24 24" fill="none">
+            <!-- muted icon (volume-x) -->
+            <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5" stroke-linecap="round" stroke-linejoin="round"/>
+            <line x1="23" y1="9" x2="17" y2="15" stroke-linecap="round"/>
+            <line x1="17" y1="9" x2="23" y2="15" stroke-linecap="round"/>
+        </svg>
+    </button>
+
+    <!-- Scroll to Top -->
+    <button class="scroll-to-top" id="scrollToTop" onclick="scrollToTop()" title="Scroll to top">
+        <svg viewBox="0 0 24 24" fill="none"><polyline points="18 15 12 9 6 15"/></svg>
+    </button>
+
+    <script>
+        // Initialize particles
+        function initParticles() {
+            const container = document.getElementById('particles');
+            const particleCount = window.innerWidth < 768 ? 20 : 35;
+
+            for (let i = 0; i < particleCount; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+
+                const isHeart = Math.random() > 0.5;
+                if (isHeart) {
+                    particle.classList.add('heart');
+                    particle.textContent = '♥';
+                } else {
+                    particle.classList.add('star');
+                    particle.textContent = '★';
+                }
+
+                particle.style.left = Math.random() * 100 + '%';
+                particle.style.top = Math.random() * 100 + '%';
+                particle.style.animationDuration = (Math.random() * 6 + 8) + 's';
+                particle.style.animationDelay = (Math.random() * 3) + 's';
+                particle.style.fontSize = (Math.random() * 10 + 15) + 'px';
+
+                container.appendChild(particle);
+            }
+        }
+
+        // Toggle accordion
+        function toggleAccordion(button) {
+            const content = button.nextElementSibling;
+            const isActive = button.classList.contains('active');
+
+            // Close all other accordions in the same accordion container
+            const accordionContainer = button.closest('.accordion');
+            if (accordionContainer) {
+                const allButtons = accordionContainer.querySelectorAll('.accordion-button');
+                allButtons.forEach(btn => {
+                    if (btn !== button) {
+                        btn.classList.remove('active');
+                        btn.nextElementSibling.classList.remove('active');
+                    }
+                });
+            }
+
+            button.classList.toggle('active');
+            content.classList.toggle('active');
+        }
+
+        // Toggle section
+        function toggleSection(sectionId, button) {
+            const section = document.getElementById(sectionId);
+            const allSections = document.querySelectorAll('section[id="about-you"], section[id="about-me"]');
+            const allButtons = document.querySelectorAll('.buttons-grid .glass-card');
+
+            allSections.forEach(s => s.style.display = 'none');
+            allButtons.forEach(b => b.classList.remove('active'));
+
+            section.style.display = 'block';
+            button.classList.add('active');
+
+            setTimeout(() => {
+                scrollToSection(sectionId);
+            }, 300);
+        }
+
+        // Scroll to section
+        function scrollToSection(id) {
+            const element = document.getElementById(id);
+            if (element) {
+                element.scrollIntoView({ behavior: 'smooth' });
+            }
+        }
+
+        // Music toggle — starts muted/paused
+        let audio = null;
+        let isPlaying = false;
+
+        const mutedIconSVG = `
+            <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5" stroke-linecap="round" stroke-linejoin="round"/>
+            <line x1="23" y1="9" x2="17" y2="15" stroke-linecap="round"/>
+            <line x1="17" y1="9" x2="23" y2="15" stroke-linecap="round"/>
+        `;
+
+        const playingIconSVG = `
+            <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M15.54 8.46a5 5 0 0 1 0 7.07" stroke-linecap="round"/>
+            <path d="M19.07 4.93a10 10 0 0 1 0 14.14" stroke-linecap="round"/>
+        `;
+
+        function toggleMusic() {
+            const button = document.getElementById('musicToggle');
+            const icon = document.getElementById('musicIcon');
+
+            if (!audio) {
+                audio = new Audio('https://cdn.discordapp.com/attachments/1252299630163656774/1491537359513325719/Indios_-_Tu_geografia_AUDIO_-_Lo_Mejor_del_Rock_Argentino.mp3?ex=69d80de9&is=69d6bc69&hm=8475f187c77eaaa3ced0cf33b07c2fe6be5f9dab5f31fd5d2cb3f11b51ff957e&');
+                audio.loop = true;
+                audio.volume = 0.3;
+            }
+
+            if (isPlaying) {
+                audio.pause();
+                button.classList.remove('playing');
+                icon.innerHTML = mutedIconSVG;
+                isPlaying = false;
+            } else {
+                audio.play().catch(err => {
+                    console.log('Autoplay restricted or audio failed to load');
+                });
+                button.classList.add('playing');
+                icon.innerHTML = playingIconSVG;
+                isPlaying = true;
+            }
+        }
+
+        // Scroll to top
+        window.addEventListener('scroll', () => {
+            const button = document.getElementById('scrollToTop');
+            if (window.scrollY > 300) {
+                button.classList.add('show');
+            } else {
+                button.classList.remove('show');
+            }
+        });
+
+        function scrollToTop() {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // Initialize on load
+        window.addEventListener('load', () => {
+            initParticles();
+        });
+
+        // Reinitialize particles on resize
+        window.addEventListener('resize', () => {
+            const container = document.getElementById('particles');
+            container.innerHTML = '';
+            initParticles();
+        });
+    </script>
+</body>
+</html>
